@@ -1,0 +1,14 @@
+C:\Users\Bupeldox V2\source\repos\stuffandthings\letmedothispls\letmedothispls\bin\Debug\netcoreapp2.1\letmedothispls.deps.json
+C:\Users\Bupeldox V2\source\repos\stuffandthings\letmedothispls\letmedothispls\bin\Debug\netcoreapp2.1\letmedothispls.runtimeconfig.json
+C:\Users\Bupeldox V2\source\repos\stuffandthings\letmedothispls\letmedothispls\bin\Debug\netcoreapp2.1\letmedothispls.runtimeconfig.dev.json
+C:\Users\Bupeldox V2\source\repos\stuffandthings\letmedothispls\letmedothispls\bin\Debug\netcoreapp2.1\letmedothispls.dll
+C:\Users\Bupeldox V2\source\repos\stuffandthings\letmedothispls\letmedothispls\obj\Debug\netcoreapp2.1\letmedothispls.csprojAssemblyReference.cache
+C:\Users\Bupeldox V2\source\repos\stuffandthings\letmedothispls\letmedothispls\obj\Debug\netcoreapp2.1\letmedothispls.csproj.CoreCompileInputs.cache
+C:\Users\Bupeldox V2\source\repos\stuffandthings\letmedothispls\letmedothispls\obj\Debug\netcoreapp2.1\letmedothispls.RazorAssemblyInfo.cache
+C:\Users\Bupeldox V2\source\repos\stuffandthings\letmedothispls\letmedothispls\obj\Debug\netcoreapp2.1\letmedothispls.RazorAssemblyInfo.cs
+C:\Users\Bupeldox V2\source\repos\stuffandthings\letmedothispls\letmedothispls\obj\Debug\netcoreapp2.1\letmedothispls.AssemblyInfoInputs.cache
+C:\Users\Bupeldox V2\source\repos\stuffandthings\letmedothispls\letmedothispls\obj\Debug\netcoreapp2.1\letmedothispls.AssemblyInfo.cs
+C:\Users\Bupeldox V2\source\repos\stuffandthings\letmedothispls\letmedothispls\obj\Debug\netcoreapp2.1\letmedothispls.RazorTargetAssemblyInfo.cache
+C:\Users\Bupeldox V2\source\repos\stuffandthings\letmedothispls\letmedothispls\bin\Debug\netcoreapp2.1\letmedothispls.pdb
+C:\Users\Bupeldox V2\source\repos\stuffandthings\letmedothispls\letmedothispls\obj\Debug\netcoreapp2.1\letmedothispls.dll
+C:\Users\Bupeldox V2\source\repos\stuffandthings\letmedothispls\letmedothispls\obj\Debug\netcoreapp2.1\letmedothispls.pdb
