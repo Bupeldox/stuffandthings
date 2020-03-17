@@ -200,11 +200,44 @@ class WalkerController{
 class Walker{
     constructor(startPos){
         this.pos = new Vec2(s.startPos.x,s.startPos.y);
+        this.previousPos = this.pos.clone();
         this.vel = new Vec2(0,0)
         this.mass = s.walkerMass;
         this.maxVelocity = 20;
+        this.forces = [];
     }
-    Update(attractors){
+
+
+    setForces(attractors){
+        for(var x = 0;x<attractors.length;x++){
+            this.forces[x] = [];
+            for(var y = 0;y<attractors[0].length;y++){
+                if(attractors[x][y]!=1 || attractors[x][y]!=0 ){
+                    var pPos = new Vec2(x,y)
+                    var dv = pPos.add(this.pos.times(-1));
+                    
+                    if(dv.magnitude()>1){
+                
+                        var attractorValue = Math.pow(1-attractors[x][y],2);
+                        var forceMagnitude = attractorValue/(dv.magnitude());
+                        var tForce = dv.normalised().times(forceMagnitude);
+                        
+                        this.forces[x][y] = tForce.times(tForce.magnitude());
+
+                        //tforce.times(1000).Draw(outputContext,this.pos);
+                        
+                        //force = force.add(tForce);
+                    }
+                }
+            }
+        }
+    }
+
+
+    Update(deltaAttractors){
+        
+
+
 
         var force = new Vec2(0,0);
         for(var x = 0;x<attractors.length;x++){
