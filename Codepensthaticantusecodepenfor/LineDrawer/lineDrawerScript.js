@@ -6,7 +6,22 @@ var settings = {
     maxVelocity:4,
     reduction:0.15,
     startPos:{x:80,y:200},
+    restart:function(){setup();}
 }
+
+window.onload = function() {
+    var gui = new dat.GUI();
+    gui.add(settings, 'sweepRadius').step(1).min(1);
+    gui.add(settings, 'walkerMass').min(0.000001);
+    gui.add(settings, 'maxVelocity').min(0);
+    gui.add(settings, 'reduction').min(0);
+    gui.add(settings.startPos, 'x');
+    gui.add(settings.startPos, 'y');
+    gui.add(settings, 'restart');
+    
+  };
+
+
 var s = settings;
 
 class MyImageData{
@@ -133,7 +148,7 @@ class Vec2 {
 }
 
 class WalkerController{
-    constructor(imageDataobj,sweepRadius){
+    constructor(imageDataobj){
         this.bwMap =[];
         var imageData = imageDataobj.data;
         //s.sweepRadius = s.sweepRadius;
@@ -258,44 +273,46 @@ class Walker{
 }
 
 
+var canvas,ctx,image,going,outputCanvas,outputContext,finalDrawingCanvas,finalDrawingContext,walkerController;
+function setup(){
 
-var canvas = document.getElementById("canvas");
-var ctx = canvas.getContext("2d");
-var image = document.getElementById("ref");
-var going = true;
+    canvas = document.getElementById("canvas");
+    ctx = canvas.getContext("2d");
+    image = document.getElementById("ref");
+    going = true;
 
-image.crossOrigin = "Anonymous";
+    image.crossOrigin = "Anonymous";
 
-var imageHeight = image.height;
-var imageWidth = image.width;
+    var imageHeight = image.height;
+    var imageWidth = image.width;
 
-ctx.canvas.height = imageHeight;
-ctx.canvas.width  = imageWidth;
+    ctx.canvas.height = imageHeight;
+    ctx.canvas.width  = imageWidth;
 
-ctx.drawImage(image,0,0);
+    ctx.drawImage(image,0,0);
 
-var rawMyImageData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
-var imageData = new MyImageData(rawMyImageData,image.width,image.height);
-//ctx.clearRect(0,0,ctx.canvas.width,ctx.canvas.height);
+    var rawMyImageData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
+    var imageData = new MyImageData(rawMyImageData,image.width,image.height);
+    //ctx.clearRect(0,0,ctx.canvas.width,ctx.canvas.height);
 
-var walkerController = new WalkerController(imageData,10);
+    walkerController = new WalkerController(imageData);
 
-var outputCanvas = document.getElementById("output");
-var outputContext = outputCanvas.getContext("2d");
+    outputCanvas = document.getElementById("output");
+    outputContext = outputCanvas.getContext("2d");
 
-outputContext.canvas.height = imageHeight;
-outputContext.canvas.width  = imageWidth;
+    outputContext.canvas.height = imageHeight;
+    outputContext.canvas.width  = imageWidth;
 
-outputContext.putImageData(imageData.GetMyImageData(),0,0);
+    outputContext.putImageData(imageData.GetMyImageData(),0,0);
 
-var finalDrawingCanvas = document.getElementById("final");
-var finalDrawingContext = finalDrawingCanvas.getContext("2d");
+    finalDrawingCanvas = document.getElementById("final");
+    finalDrawingContext = finalDrawingCanvas.getContext("2d");
 
-finalDrawingContext.canvas.height = imageHeight;
-finalDrawingContext.canvas.width  = imageWidth;
+    finalDrawingContext.canvas.height = imageHeight;
+    finalDrawingContext.canvas.width  = imageWidth;
 
-
-
+}
+setup();
 
 function updateProgress(){
     walkerController.DrawProgress(outputContext);
