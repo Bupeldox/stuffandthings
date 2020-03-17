@@ -1,0 +1,15 @@
+
+
+body{
+    display:flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-content: space-around;
+    align-items: center;
+}
+canvas{
+    margin:20px;
+}
+img{
+    display: none;
+}
