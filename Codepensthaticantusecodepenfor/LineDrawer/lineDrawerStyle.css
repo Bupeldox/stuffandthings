@@ -9,6 +9,8 @@ body{
 }
 canvas{
     margin:20px;
+    padding: 20px;
+    border: solid;
 }
 img{
     display: none;

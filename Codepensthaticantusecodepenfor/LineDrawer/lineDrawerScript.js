@@ -262,6 +262,7 @@ class Walker{
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 var image = document.getElementById("ref");
+var going = true;
 
 image.crossOrigin = "Anonymous";
 
@@ -309,9 +310,18 @@ function UpdateLoop(count){
     walkerController.Draw(outputContext);
     walkerController.Update();
     
-    
+    if(going){
    //requestAnimationFrame(function(){UpdateLoop(count-1)},);
-    setTimeout(function(){UpdateLoop(count-1);},1);
+    setTimeout(function(){UpdateLoop(2);},1);
+    }
 }
-UpdateLoop(50000);
+
+function toggleGoing(){
+    going = !going;
+    if(going){
+        UpdateLoop()
+    }
+}
+
+UpdateLoop(2);
 
