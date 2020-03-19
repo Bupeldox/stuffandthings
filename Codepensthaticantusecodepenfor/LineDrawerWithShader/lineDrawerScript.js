@@ -32,10 +32,10 @@ class MyImageData{
         
         var index = 0;
         for(var y = 0;y<this.height;y++){
-                for(var x = 0;x<this.width;x++){
-                    if(this.data.length<=x){
-                            this.data[x] = [];
-                    }
+            for(var x = 0;x<this.width;x++){
+                if(this.data.length<=x){
+                        this.data[x] = [];
+                }
                 var col = new Color(this.raw[index],this.raw[index+1],this.raw[index+2])
                 index+=4;
                 this.data[x][y] = col;
@@ -149,6 +149,9 @@ class Vec2 {
 class WalkerController{
     constructor(imageDataobj){
         this.bwMap =[];
+        
+        //this.shaderContext = document.getElementById("shaderCanvas").getContext("gsgl");
+
         var imageData = imageDataobj.data;
         //s.sweepRadius = s.sweepRadius;
         for(var x=0;x<imageDataobj.width;x++){
@@ -163,6 +166,11 @@ class WalkerController{
 
     Update(){
         
+        var forceMap = 
+        
+
+
+
         this.walker.Update(this.bwMap);
         
         
@@ -181,9 +189,10 @@ class WalkerController{
                             this.bwMap[removePos.x][removePos.y] = 1;
                         }
                     }
-                }   
-            }   
+                }
+            }
         }
+
     }
 
     DrawProgress(ctx){
@@ -219,8 +228,9 @@ class Walker{
         this.mass = s.walkerMass;
         this.maxVelocity = 20;
     }
-    Update(attractors){
+    Update(forceMap,){
 
+        
         var force = new Vec2(0,0);
         for(var x = 0;x<attractors.length;x++){
             for(var y = 0;y<attractors[0].length;y++){
