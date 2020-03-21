@@ -166,12 +166,11 @@ class WalkerController{
 
     Update(){
         
-        var forceMap = 
+        //var forceMap = shaderCanvas.getImageData(0,0,shaderCanvas.height,shaderCanvas.width);
         
-
-
-
-        this.walker.Update(this.bwMap);
+        var shaderOutput = UpdateShaderCanvas(this.walker.pos);
+        
+        this.walker.Update(shaderOutput);
         
         
         var walkerPos = this.walker.pos.clone();
@@ -228,10 +227,17 @@ class Walker{
         this.mass = s.walkerMass;
         this.maxVelocity = 20;
     }
-    Update(forceMap,){
+    Update(shaderOutput){
 
-        
         var force = new Vec2(0,0);
+
+        for (var index = 0;index<shaderOutput.length;index+=4){
+            var tForce = new Vec2(shaderOutput[index]-127,shaderOutput[index+1]-127);
+            force = force.add(tForce);
+        }
+        
+
+        /*
         for(var x = 0;x<attractors.length;x++){
             for(var y = 0;y<attractors[0].length;y++){
                 if(attractors[x][y]!=1 || attractors[x][y]!=0 ){
@@ -248,11 +254,10 @@ class Walker{
 
                         //tforce.times(1000).Draw(outputContext,this.pos);
                         
-                        force = force.add(tforce);
                     }
                 }
             }
-        }
+        }*/
         //f=ma a=f/m
         var acceleration = force.times(1/this.mass)
         this.vel = this.vel.add(acceleration);

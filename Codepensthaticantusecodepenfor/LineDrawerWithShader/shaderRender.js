@@ -48,7 +48,8 @@ void main() {
 }
 `;
 const m4 = twgl.m4;
-const gl = document.getElementById("shaderCanvas").getContext("webgl");
+const gl = document.getElementById("shaderCanvas").getContext("webgl",{preserveDrawingBuffer: true});
+
 //const info = document.querySelector("#info");
 
 // compiles shaders, link program, looks up locations
@@ -64,7 +65,7 @@ const textureInfo = {
 var referenceImage = document.getElementById("ref");
 
 const texture  = twgl.createTexture(gl,{
-    fromCanvas: { src: document.getElementById("canvas") },
+    fromCanvas: { src: document.getElementById("output") },
 });
 
 /*
@@ -124,12 +125,14 @@ function render() {
 }
 render();
 
-function Update(pos,imageData){
+function UpdateShaderCanvas(pos){
   
     mousePos[0] = pos.x;
-    mousePos[1] = pos.y;
+    mousePos[1] = gl.canvas.height-pos.y;
+    var imageData = new Uint8Array(gl.canvas.height*gl.canvas.width*4);
     render();
-
+    gl.readPixels(0,0,shaderCanvas.height,shaderCanvas.width,gl.RGBA,gl.UNSIGNED_BYTE,imageData);
+    return imageData;
 
 }
 /*

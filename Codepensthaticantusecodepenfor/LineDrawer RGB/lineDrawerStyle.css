@@ -1,0 +1,17 @@
+
+
+body{
+    display:flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-content: space-around;
+    align-items: center;
+}
+canvas{
+    margin:20px;
+    padding: 20px;
+    border: solid;
+}
+img{
+    display: none;
+}
