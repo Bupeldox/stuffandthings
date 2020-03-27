@@ -371,7 +371,7 @@ function setup() {
 
 
 }
-setup();
+//setup();
 var currentlyShowing = 0;
 function updateProgress() {
 
@@ -389,26 +389,21 @@ function updateProgress() {
 }
 
 
-//walkerControllerBlack.Update();
-walkerControllerRed.Update();
-walkerControllerGreen.Update();
-walkerControllerBlue.Update();
-
 function UpdateLoop(count) {
     if (count == 0) {
         return;
     }
 
+    //walkerControllerBlack.Update(); 
+    walkerControllerRed.Update();
+    walkerControllerGreen.Update();
+    walkerControllerBlue.Update();
 
     //walkerControllerBlack.Draw(outputContext); 
     walkerControllerRed.Draw(outputContext);
     walkerControllerGreen.Draw(outputContext);
     walkerControllerBlue.Draw(outputContext);
 
-    //walkerControllerBlack.Update(); 
-    walkerControllerRed.Update();
-    walkerControllerGreen.Update();
-    walkerControllerBlue.Update();
 
     if (going) {
         //requestAnimationFrame(function(){UpdateLoop(count-1)},);
@@ -423,5 +418,23 @@ function toggleGoing() {
     }
 }
 
-UpdateLoop(2);
 
+//UpdateLoop(2);
+
+
+window.addEventListener('load', function() {
+    document.querySelector('input[type="file"]').addEventListener('change', function() {
+        if (this.files && this.files[0]) {
+            var img = document.querySelector('#ref');  // $('img')[0]
+            img.src = URL.createObjectURL(this.files[0]); // set src to blob url
+            img.onload = imageIsLoaded;
+        }
+    });
+  });
+  
+  function imageIsLoaded() { 
+    alert(this.src);
+    going = false; 
+    setup();
+    UpdateLoop(2);
+  }
