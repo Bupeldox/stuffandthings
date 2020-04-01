@@ -302,7 +302,7 @@ function SetupScene() {
 	//Sea
 	var sea = new THREE.Mesh(
 		new THREE.PlaneGeometry(800, 800, 80, 80),
-		new THREE.MeshBasicMaterial({ color: 0x6c8eb3 })
+		new THREE.MeshBasicMaterial({ color: 0x6c8eb3, transparent:true, opacity:0.95 })
 	);
 	sea.rotation.x = -Math.PI / 2;
 	scene.add(sea);
@@ -354,7 +354,8 @@ class Island {
 		var resolution = 100;
 		this.generator = new worleyAndChunkGen(resolution);
 		this.layoutMap = this.generator.GetMap();
-		var sandPosses = getPositionsInsideOfHight(2 / 5, 3 / 5, this.layoutMap);
+		var sandVariance = (2*(Math.random()-0.5))*0.1;
+		var sandPosses = getPositionsInsideOfHight(sandVariance+(2 / 5), 3 / 5, this.layoutMap);
 		var sandMaterial = new THREE.MeshBasicMaterial({ color: 0xefdbb3 });
 		this.sand = this.setupSand(
 			sandMaterial,
@@ -394,7 +395,7 @@ class Island {
 		var grassThickness = 0.1;
 		this.grass = this.setupGrass(
 			grassMaterial,
-			this.layoutMap.length*0.7,
+			this.layoutMap.length*0.72,
 			grassposses,
 			landHeights,
 			10,
@@ -439,7 +440,7 @@ class Island {
 				unitSize,
 				unitSize * baseScale,
 				thisHeight,
-				10
+				5
 			);
 			var unit = new THREE.Mesh(geometry, material);
 			var p = posses[i].multiplyScalar(scale);
